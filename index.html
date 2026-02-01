@@ -1,124 +1,508 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="hr">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Moj Prozor Svjetla (MPS) – kršćanska, katolička mobilna aplikacija za svakodnevno čitanje i razmatranje Božje Riječi." />
+  <meta property="og:title" content="Moj Prozor Svjetla" />
+  <meta property="og:description" content="Svjetlo Dana • Prozor Svjetla • Staze Svjetla • Omiljeni citati • Razmatranja" />
+  <meta property="og:image" content="assets/feature.png" />
+  <meta property="og:type" content="website" />
   <title>Moj Prozor Svjetla</title>
 
+  <link rel="icon" type="image/png" href="assets/logo.png" />
   <style>
     :root{
-      --bg:#f7f7f7;
-      --card:#ffffff;
-      --text:#1f2937;
-      --muted:#6b7280;
-      --border:#e5e7eb;
-      --accent:#2f6f6a;
+      --bg:#F7E2B9;
+      --surface:#FFF7E8;
+      --ink:#193248;
+      --muted:rgba(25,50,72,.75);
+      --gold:#806244;
+      --goldSoft:#C8B79A;
+      --line:rgba(128,98,68,.35);
+      --shadow: 0 18px 60px rgba(0,0,0,.10);
+      --radius: 18px;
+      --radius2: 26px;
+      --max: 1080px;
     }
-
+    *{box-sizing:border-box}
+    html,body{height:100%}
     body{
       margin:0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background:var(--bg);
-      color:var(--text);
-      line-height:1.6;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Helvetica Neue";
+      background: radial-gradient(1200px 600px at 50% -10%, rgba(255,255,255,.9), rgba(255,255,255,0)),
+                  linear-gradient(180deg, #FBE9C7 0%, var(--bg) 65%, #F4D9A8 100%);
+      color:var(--ink);
     }
-
-    .wrap{
-      max-width: 860px;
-      margin: 0 auto;
-      padding: 32px 16px 40px;
+    a{color:inherit}
+    .wrap{max-width:var(--max); margin:0 auto; padding:0 18px}
+    .topbar{
+      position:sticky; top:0; z-index:30;
+      backdrop-filter: blur(10px);
+      background: rgba(247,226,185,.72);
+      border-bottom:1px solid rgba(128,98,68,.22);
     }
-
-    .card{
-      background:var(--card);
-      border:1px solid var(--border);
-      border-radius: 16px;
-      padding: 28px 22px;
-      box-shadow: 0 1px 0 rgba(0,0,0,.02);
-      text-align:center;
+    .topbar .inner{display:flex; align-items:center; justify-content:space-between; padding:12px 0}
+    .brand{display:flex; gap:10px; align-items:center; text-decoration:none}
+    .brand img{width:34px; height:34px; border-radius:10px; box-shadow:0 10px 30px rgba(0,0,0,.10)}
+    .brand .t{display:flex; flex-direction:column; line-height:1.05}
+    .brand .t b{font-size:14px}
+    .brand .t span{font-size:12px; color:var(--muted)}
+    .nav{display:flex; gap:12px; align-items:center}
+    .nav a{font-size:13px; text-decoration:none; color:var(--muted); padding:8px 10px; border-radius:12px}
+    .nav a:hover{background: rgba(255,255,255,.55); color:var(--ink)}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      gap:10px; padding:12px 14px; border-radius:14px;
+      background: rgba(255,255,255,.75);
+      border:1px solid rgba(128,98,68,.28);
+      box-shadow: 0 12px 30px rgba(0,0,0,.08);
+      text-decoration:none; font-weight:700; font-size:14px;
     }
-
+    .btn.primary{
+      background: linear-gradient(180deg, rgba(255,255,255,.88), rgba(255,255,255,.68));
+      border-color: rgba(128,98,68,.36);
+    }
+    .btn small{font-weight:600; opacity:.72}
+    .hero{padding:36px 0 10px}
+    .heroGrid{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:26px;
+      align-items:center;
+    }
+    .kicker{
+      display:inline-flex; gap:8px; align-items:center;
+      padding:8px 12px; border-radius:999px;
+      background: rgba(255,255,255,.55);
+      border:1px solid rgba(128,98,68,.22);
+      color:var(--muted);
+      font-size:13px;
+      width: fit-content;
+    }
     h1{
-      margin: 0 0 12px;
-      font-size: 1.8rem;
-      letter-spacing:.2px;
+      font-size:44px;
+      letter-spacing:-.02em;
+      line-height:1.05;
+      margin:14px 0 10px;
     }
-
-    .subtitle{
-      margin: 0 auto 22px;
-      max-width: 560px;
+    .lead{
+      font-size:16px;
+      line-height:1.65;
       color:var(--muted);
-      font-size:1rem;
+      margin:0 0 18px;
     }
-
-    .actions{
-      margin-top: 20px;
+    .ctaRow{display:flex; gap:12px; flex-wrap:wrap; margin: 16px 0 10px}
+    .note{font-size:12.5px; color:rgba(25,50,72,.60)}
+    .heroCard{
+      background: rgba(255,255,255,.72);
+      border:1px solid rgba(128,98,68,.24);
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow);
+      overflow:hidden;
     }
-
-    a.button{
-      display:inline-block;
-      padding: 10px 18px;
-      border-radius: 999px;
-      border:1px solid var(--border);
-      background: #fff;
-      color: var(--accent);
-      font-weight: 600;
-      text-decoration:none;
-      transition: background .15s ease, transform .05s ease;
+    .heroCard img{display:block; width:100%; height:auto}
+    .section{padding:44px 0}
+    .section h2{
+      font-size:26px; margin:0 0 12px; letter-spacing:-.01em;
     }
-
-    a.button:hover{
-      background:#f0f4f4;
+    .section p{margin:0; color:var(--muted); line-height:1.7}
+    .features{
+      margin-top:18px;
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:14px;
     }
-
+    .f{
+      background: rgba(255,255,255,.68);
+      border:1px solid rgba(128,98,68,.22);
+      border-radius: var(--radius);
+      padding:14px 14px 12px;
+      box-shadow: 0 10px 24px rgba(0,0,0,.06);
+    }
+    .f b{display:block; margin-bottom:6px}
+    .f span{color:var(--muted); font-size:13.5px; line-height:1.55}
+    .gallery{
+      margin-top:16px;
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap:12px;
+    }
+    .shot{
+      position:relative;
+      border-radius: 16px;
+      overflow:hidden;
+      border:1px solid rgba(128,98,68,.24);
+      background: rgba(255,255,255,.55);
+      box-shadow: 0 12px 26px rgba(0,0,0,.08);
+      cursor:pointer;
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .shot:hover{transform: translateY(-2px); box-shadow: 0 16px 34px rgba(0,0,0,.12)}
+    .shot img{width:100%; height:auto; display:block}
+    .shot .cap{
+      position:absolute; left:10px; right:10px; bottom:10px;
+      padding:8px 10px;
+      border-radius: 12px;
+      background: rgba(255,255,255,.78);
+      border:1px solid rgba(128,98,68,.22);
+      font-size:12.5px;
+      color:rgba(25,50,72,.78);
+      backdrop-filter: blur(8px);
+    }
+    .story{
+      display:grid; grid-template-columns: 1fr 1fr;
+      gap:16px; margin-top:14px;
+    }
+    .panel{
+      background: rgba(255,255,255,.70);
+      border:1px solid rgba(128,98,68,.22);
+      border-radius: var(--radius2);
+      padding:16px 16px 14px;
+      box-shadow: 0 10px 24px rgba(0,0,0,.06);
+    }
+    .panel h3{margin:0 0 10px; font-size:16px}
+    .panel ul{margin:0; padding-left:18px; color:var(--muted); line-height:1.7}
+    .panel li{margin:6px 0}
+    .divider{
+      height:1px; background: rgba(128,98,68,.22);
+      margin: 24px 0;
+    }
     footer{
-      margin-top: 22px;
-      color:var(--muted);
-      font-size:.9rem;
+      padding:26px 0 34px;
+      border-top:1px solid rgba(128,98,68,.22);
+      background: rgba(255,255,255,.35);
+    }
+    .foot{
+      display:flex; gap:14px; align-items:flex-start; justify-content:space-between; flex-wrap:wrap;
+    }
+    .foot small{color:rgba(25,50,72,.62); line-height:1.55}
+    .pill{
+      display:inline-flex; gap:8px; align-items:center;
+      padding:8px 12px;
+      border-radius:999px;
+      background: rgba(255,255,255,.58);
+      border:1px solid rgba(128,98,68,.22);
+      font-size:12.5px;
+      color:rgba(25,50,72,.70);
+      text-decoration:none;
+      white-space:nowrap;
     }
 
-    @media (prefers-color-scheme: dark){
-      :root{
-        --bg:#0b0f14;
-        --card:#0f1720;
-        --text:#e5e7eb;
-        --muted:#9ca3af;
-        --border:#1f2a37;
-        --accent:#7bd6cd;
-      }
+    /* Lightbox */
+    .lb{
+      position:fixed; inset:0; z-index:60;
+      background: rgba(0,0,0,.72);
+      display:none;
+      align-items:center; justify-content:center;
+      padding: 20px;
+    }
+    .lb.open{display:flex}
+    .lbCard{
+      max-width: min(980px, 96vw);
+      max-height: 92vh;
+      border-radius: 18px;
+      overflow:hidden;
+      background: rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.14);
+      box-shadow: 0 40px 120px rgba(0,0,0,.55);
+      position:relative;
+    }
+    .lbImg{display:block; max-width:100%; max-height:92vh; height:auto; width:auto; margin:0 auto}
+    .lbBar{
+      position:absolute; top:10px; left:10px; right:10px;
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+      pointer-events:none;
+    }
+    .lbTag{
+      pointer-events:none;
+      padding:8px 10px; border-radius:999px;
+      background: rgba(255,255,255,.80);
+      border:1px solid rgba(128,98,68,.22);
+      color:rgba(25,50,72,.82);
+      font-size:12.5px;
+      backdrop-filter: blur(10px);
+    }
+    .lbBtns{display:flex; gap:8px; pointer-events:auto}
+    .lbBtn{
+      border:0; cursor:pointer;
+      padding:8px 10px; border-radius:999px;
+      background: rgba(255,255,255,.85);
+      border:1px solid rgba(128,98,68,.22);
+      font-weight:800;
+    }
 
-      a.button{
-        background:#0f1720;
-      }
-
-      a.button:hover{
-        background:#13202a;
-      }
+    @media (max-width: 980px){
+      .heroGrid{grid-template-columns: 1fr}
+      h1{font-size:38px}
+      .features{grid-template-columns: 1fr 1fr}
+      .gallery{grid-template-columns: repeat(3, 1fr)}
+      .story{grid-template-columns: 1fr}
+    }
+    @media (max-width: 560px){
+      h1{font-size:32px}
+      .features{grid-template-columns: 1fr}
+      .gallery{grid-template-columns: repeat(2, 1fr)}
+      .nav{display:none}
     }
   </style>
 </head>
+
 <body>
-  <main class="wrap">
-    <section class="card">
-      <h1>Moj Prozor Svjetla</h1>
+  <div class="topbar">
+    <div class="wrap">
+      <div class="inner">
+        <a class="brand" href="#top" aria-label="Moj Prozor Svjetla">
+          <img src="assets/logo.png" alt="Moj Prozor Svjetla – logo">
+          <div class="t">
+            <b>Moj Prozor Svjetla</b>
+            <span>Riječ koja dolazi kad ti je najpotrebnija</span>
+          </div>
+        </a>
 
-      <p class="subtitle">
-        Faith-based inspirational Android application focused on daily Scripture,
-        reflection, and spiritual encouragement.
-      </p>
+        <div class="nav" aria-label="Navigacija">
+          <a href="#znacajke">Značajke</a>
+          <a href="#galerija">Galerija</a>
+          <a href="#prica">Priča</a>
+          <a href="#izvor">Izvor</a>
+        </div>
 
-      <div class="actions">
-        <a class="button" href="./privacy-policy">Privacy Policy</a>
+        <a class="btn primary" href="#preuzmi" title="Preuzmi">
+          Preuzmi <small>(Android)</small>
+        </a>
       </div>
+    </div>
+  </div>
 
-      <footer>
-        © <span id="year"></span> Moj Prozor Svjetla
-      </footer>
+  <main id="top">
+    <section class="hero">
+      <div class="wrap">
+        <div class="heroGrid">
+          <div>
+            <div class="kicker">📖 Katolička mobilna aplikacija • Svjetlo Dana • Razmatranja</div>
+            <h1>Moj Prozor Svjetla</h1>
+            <p class="lead">
+              Kršćanska, katolička aplikacija koja pomaže svakodnevno čitati i razmatrati Božju Riječ — jednostavno,
+              ugodno i “u džepu”, baš onda kad je najpotrebnije.
+            </p>
+
+            <div class="ctaRow" id="preuzmi">
+              <!-- Zamijeni link kad budeš imao Play Store URL -->
+              <a class="btn primary" href="#" onclick="alert('Dodaj Play Store link kad bude spreman (u index.html: zamijeni href).'); return false;">
+                ▶︎ Otvori na Google Play
+              </a>
+              <a class="btn" href="#galerija">📷 Pogledaj slike</a>
+              <a class="btn" href="privacy-policy" title="Privacy policy">🔒 Privacy policy</a>
+            </div>
+
+            <div class="note">
+              Savjet: kad dobiješ stvarni URL iz Play Store-a, samo zamijeni gornji link (href).
+            </div>
+          </div>
+
+          <div class="heroCard" aria-label="Istaknuta grafika">
+            <img src="assets/feature.png" alt="Istaknuta grafika aplikacije Moj Prozor Svjetla" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="znacajke">
+      <div class="wrap">
+        <h2>✨ Što donosi MPS aplikacija?</h2>
+        <p>
+          Svaki dan donosi novu priliku za ohrabrenje, smjer i mir. U aplikaciji te čekaju citati, “staze” tema,
+          omiljeni citati i razmatranja — uz mogućnost glasovnog unosa bilješki.
+        </p>
+
+        <div class="features">
+          <div class="f"><b>📖 Svjetlo Dana</b><span>Biblijski citat za svaki dan, uz jutarnji podsjetnik.</span></div>
+          <div class="f"><b>🪟 Prozor Svjetla</b><span>Interaktivno “izvlačenje” Božje Riječi među ~1000 citata.</span></div>
+          <div class="f"><b>🛤 Staze Svjetla</b><span>20 tema (staza) + gotovi paketi koje je priredio MPS.</span></div>
+          <div class="f"><b>❤️ Omiljeni citati</b><span>Spremi citate za kasnije čitanje i razmatranje.</span></div>
+          <div class="f"><b>🕯 Razmatranja</b><span>Bilješke uz bogati editor + glasovni unos (diktiranje).</span></div>
+          <div class="f"><b>🕊 Povijest citata</b><span>Jednostavan povratak do ~200 citata unatrag.</span></div>
+        </div>
+
+        <div class="divider"></div>
+
+        <p>
+          ❤️ Posebno mjesto zauzima citat <b>„Ja ❤️ Isusa“</b> — rijedak i radostan trenutak kad se “izvuče”.
+        </p>
+      </div>
+    </section>
+
+    <section class="section" id="galerija">
+      <div class="wrap">
+        <h2>📷 Galerija</h2>
+        <p>Pogledaj kako izgleda aplikacija kroz najvažnije ekrane.</p>
+
+        <div class="gallery" role="list">
+          <div class="shot" role="listitem" data-src="assets/s1.png" data-cap="Splash / Uvod">
+            <img src="assets/s1.png" alt="Screenshot 1" loading="lazy">
+            <div class="cap">Splash / Uvod</div>
+          </div>
+          <div class="shot" role="listitem" data-src="assets/s2.png" data-cap="Svjetlo dana / Glavni ekran">
+            <img src="assets/s2.png" alt="Screenshot 2" loading="lazy">
+            <div class="cap">Svjetlo dana</div>
+          </div>
+          <div class="shot" role="listitem" data-src="assets/s3.png" data-cap="Prozor Svjetla – izvlačenje">
+            <img src="assets/s3.png" alt="Screenshot 3" loading="lazy">
+            <div class="cap">Prozor Svjetla</div>
+          </div>
+          <div class="shot" role="listitem" data-src="assets/s4.png" data-cap="Odabir staza svjetla">
+            <img src="assets/s4.png" alt="Screenshot 4" loading="lazy">
+            <div class="cap">Staze Svjetla</div>
+          </div>
+          <div class="shot" role="listitem" data-src="assets/s5.png" data-cap="Svjetlo za tebe – citat kartica">
+            <img src="assets/s5.png" alt="Screenshot 5" loading="lazy">
+            <div class="cap">Citat kartica</div>
+          </div>
+          <div class="shot" role="listitem" data-src="assets/s6.png" data-cap="Omiljeni citati">
+            <img src="assets/s6.png" alt="Screenshot 6" loading="lazy">
+            <div class="cap">Omiljeni</div>
+          </div>
+          <div class="shot" role="listitem" data-src="assets/s7.png" data-cap="Razmatranja – editor">
+            <img src="assets/s7.png" alt="Screenshot 7" loading="lazy">
+            <div class="cap">Razmatranja</div>
+          </div>
+          <div class="shot" role="listitem" data-src="assets/s8.png" data-cap="Unos teksta govorom">
+            <img src="assets/s8.png" alt="Screenshot 8" loading="lazy">
+            <div class="cap">Govorni unos</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="prica">
+      <div class="wrap">
+        <h2>✨ Kako je nastala MPS aplikacija?</h2>
+        <p>
+          Ideja je krenula prije više od 20 godina: citati iz Biblije bili su zapisani na male papiriće i nasumično se
+          izvlačili u obitelji — kao pomoć u kušnjama, nedoumicama i traženju Božjeg smjera.
+        </p>
+
+        <div class="story">
+          <div class="panel">
+            <h3>Za koga je aplikacija?</h3>
+            <ul>
+              <li>za osobnu molitvu i razmatranja u tišini</li>
+              <li>za svakodnevno življenje od Božje Riječi</li>
+              <li>za dnevno ohrabrenje i nadu</li>
+              <li>kad trebamo savjet od Boga u problemima i kušnjama</li>
+            </ul>
+          </div>
+          <div class="panel">
+            <h3>Što želimo postići?</h3>
+            <ul>
+              <li>da Božja Riječ bude dostupna “u džepu”</li>
+              <li>da se citati lako spremaju u omiljene</li>
+              <li>da razmatranja budu jednostavna (i glasom)</li>
+              <li>da ostane poruka: <b>„Riječ koja dolazi kad ti je najpotrebnija.“</b></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="izvor">
+      <div class="wrap">
+        <h2>✨ Izvor biblijskih tekstova</h2>
+        <p>
+          Aplikacija koristi biblijske tekstove iz prijevoda Jeruzalemska Biblija, prevedene na hrvatski jezik od izdavača
+          Kršćanska sadašnjost.
+        </p>
+
+        <div class="divider"></div>
+
+        <p class="note">
+          © Moj Prozor Svjetla. Svi zaštitni znakovi pripadaju svojim vlasnicima.
+        </p>
+      </div>
     </section>
   </main>
 
+  <footer>
+    <div class="wrap">
+      <div class="foot">
+        <div style="display:flex; gap:10px; align-items:center">
+          <img src="assets/logo.png" alt="" style="width:34px; height:34px; border-radius:10px; box-shadow:0 10px 30px rgba(0,0,0,.10)">
+          <div>
+            <div style="font-weight:800; font-size:14px">Moj Prozor Svjetla</div>
+            <small>Riječ koja dolazi kad ti je najpotrebnija.</small>
+          </div>
+        </div>
+
+        <div style="display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end">
+          <a class="pill" href="#top">↑ Na vrh</a>
+          <a class="pill" href="#galerija">Galerija</a>
+          <a class="pill" href="privacy-policy">Privacy policy</a>
+          <a class="pill" href="https://mojprozorsvjetla.com">mojprozorsvjetla.com</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Lightbox -->
+  <div class="lb" id="lb" aria-hidden="true">
+    <div class="lbCard" role="dialog" aria-label="Pregled slike">
+      <div class="lbBar">
+        <div class="lbTag" id="lbCap">Screenshot</div>
+        <div class="lbBtns">
+          <button class="lbBtn" id="lbPrev" title="Prethodna">←</button>
+          <button class="lbBtn" id="lbNext" title="Sljedeća">→</button>
+          <button class="lbBtn" id="lbClose" title="Zatvori">✕</button>
+        </div>
+      </div>
+      <img class="lbImg" id="lbImg" src="" alt="" />
+    </div>
+  </div>
+
   <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
+    (function(){
+      const shots = Array.from(document.querySelectorAll('.shot'));
+      const lb = document.getElementById('lb');
+      const lbImg = document.getElementById('lbImg');
+      const lbCap = document.getElementById('lbCap');
+      const btnClose = document.getElementById('lbClose');
+      const btnPrev = document.getElementById('lbPrev');
+      const btnNext = document.getElementById('lbNext');
+
+      let idx = 0;
+
+      function openAt(i){
+        idx = Math.max(0, Math.min(shots.length - 1, i));
+        const el = shots[idx];
+        lbImg.src = el.dataset.src;
+        lbImg.alt = el.dataset.cap || ('Screenshot ' + (idx+1));
+        lbCap.textContent = el.dataset.cap || ('Screenshot ' + (idx+1));
+        lb.classList.add('open');
+        lb.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      }
+      function close(){
+        lb.classList.remove('open');
+        lb.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        lbImg.src = '';
+      }
+      function prev(){ openAt((idx - 1 + shots.length) % shots.length); }
+      function next(){ openAt((idx + 1) % shots.length); }
+
+      shots.forEach((el, i) => el.addEventListener('click', () => openAt(i)));
+      btnClose.addEventListener('click', close);
+      btnPrev.addEventListener('click', prev);
+      btnNext.addEventListener('click', next);
+
+      lb.addEventListener('click', (e) => { if(e.target === lb) close(); });
+
+      window.addEventListener('keydown', (e) => {
+        if(!lb.classList.contains('open')) return;
+        if(e.key === 'Escape') close();
+        if(e.key === 'ArrowLeft') prev();
+        if(e.key === 'ArrowRight') next();
+      });
+    })();
   </script>
 </body>
 </html>
