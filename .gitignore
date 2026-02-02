@@ -1,0 +1,7 @@
+# Visual Studio / VS Code
+.vs/
+.vscode/
+
+# Build / temp
+bin/
+obj/
