@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="hr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="{{ page.description | default: 'Moj Prozor Svjetla (MPS) – kršćanska, katolička mobilna aplikacija za svakodnevno čitanje i razmatranje Božje Riječi.' }}" />
+    <meta property="og:title" content="{{ page.og_title | default: 'Moj Prozor Svjetla' }}" />
+    <meta property="og:description" content="{{ page.og_description | default: 'Svjetlo Dana • Prozor Svjetla • Staze Svjetla • Omiljeni citati • Razmatranja' }}" />
+    <meta property="og:image" content="{{ page.og_image | default: '/assets/img/feature.png' }}" />
+    <meta property="og:type" content="website" />
+    <title>{{ page.title | default: 'Moj Prozor Svjetla' }}</title>
+
+    <link rel="icon" type="image/png" href="/assets/img/logo.png" />
+    {% include head-style.html %}
+</head>
+
+<body>
+    {% include header.html %}
+
+    {{ content }}
+
+    {% include footer.html %}
+</body>
+</html>
