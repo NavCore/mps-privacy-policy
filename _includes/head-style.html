@@ -207,6 +207,22 @@
             line-height: 1.7
         }
 
+        /* Sekcije s punom podlogom (bez rezanja) */
+        .section.bg {
+            background: linear-gradient(
+                180deg,
+                #FBE9C7 0%,
+                var(--bg) 65%,
+                #F4D9A8 100%
+            );
+            padding: 64px 0;
+        }
+
+        /* da se susjedne sekcije lijepo spoje */
+        .section.bg + .section {
+            padding-top: 64px;
+        }
+
     .features {
         margin-top: 18px;
         display: grid;
