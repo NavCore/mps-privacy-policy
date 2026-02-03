@@ -1,2 +1,9 @@
 title: Moj Prozor Svjetla
 lang: hr
+encoding: "utf-8"
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: default
