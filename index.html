@@ -26,7 +26,10 @@ description: Moj Prozor Svjetla (MPS) – kršćanska, katolička mobilna aplika
                 </div>
 
                 <div class="heroCard" aria-label="Istaknuta grafika">
-                    <img src="assets/img/feature.png" alt="Istaknuta grafika aplikacije Moj Prozor Svjetla" />
+                    <picture>
+                        <source srcset="/assets/img/feature.webp" type="image/webp">
+                        <img src="/assets/img/feature.png" alt="Istaknuta grafika aplikacije Moj Prozor Svjetla" />
+                    </picture>
                 </div>
             </div>
         </div>
@@ -62,37 +65,61 @@ description: Moj Prozor Svjetla (MPS) – kršćanska, katolička mobilna aplika
             <p>Pogledaj kako izgleda aplikacija kroz najvažnije ekrane.</p>
 
             <div class="gallery" role="list">
-                <div class="shot" role="listitem" data-src="assets/img/screenshot_01.png" data-cap="Splash / Uvod">
-                    <img src="assets/img/screenshot_01.png" alt="Screenshot 1" loading="lazy">
-                    <div class="cap">Splash / Uvod</div>
+                <div class="shot" role="listitem" data-src="/assets/img/screenshot_01.png" data-src-webp="/assets/img/screenshot_01_lg.webp" data-cap="Splash / Uvod">
+                    <picture>
+                        <source srcset="/assets/img/screenshot_01_th.webp" type="image/webp">
+                        <img src="/assets/img/screenshot_01_th.jpg" alt="Splash | Uvod" loading="lazy">
+                    </picture>
+                    <div class="cap">Splash | Uvod</div>
                 </div>
-                <div class="shot" role="listitem" data-src="assets/img/screenshot_02.png" data-cap="Svjetlo dana / Glavni ekran">
-                    <img src="assets/img/screenshot_02.png" alt="Screenshot 2" loading="lazy">
-                    <div class="cap">Svjetlo dana</div>
-                </div>
-                <div class="shot" role="listitem" data-src="assets/img/screenshot_03.jpg" data-cap="Prozor Svjetla – izvlačenje">
-                    <img src="assets/img/screenshot_03.jpg" alt="Screenshot 3" loading="lazy">
+                <div class="shot" role="listitem" data-src="/assets/img/screenshot_02.png" data-src-webp="/assets/img/screenshot_02_lg.webp" data-cap="Svjetlo dana / Glavni ekran">
+                    <picture>
+                        <source srcset="/assets/img/screenshot_02_th.webp" type="image/webp">
+                        <img src="/assets/img/screenshot_02_th.jpg" alt="Prozor Svjetla" loading="lazy">
+                    </picture>
                     <div class="cap">Prozor Svjetla</div>
                 </div>
-                <div class="shot" role="listitem" data-src="assets/img/screenshot_04.png" data-cap="Odabir staza svjetla">
-                    <img src="assets/img/screenshot_04.png" alt="Screenshot 4" loading="lazy">
+                <div class="shot" role="listitem" data-src="/assets/img/screenshot_03.jpg" data-src-webp="/assets/img/screenshot_03_lg.webp" data-cap="Prozor Svjetla – izvlačenje">
+                    <picture>
+                        <source srcset="/assets/img/screenshot_03_th.webp" type="image/webp">
+                        <img src="/assets/img/screenshot_03_th.jpg" alt="Staze Svjetla" loading="lazy">
+                    </picture>
                     <div class="cap">Staze Svjetla</div>
                 </div>
-                <div class="shot" role="listitem" data-src="assets/img/screenshot_05.png" data-cap="Svjetlo za tebe – citat kartica">
-                    <img src="assets/img/screenshot_05.png" alt="Screenshot 5" loading="lazy">
-                    <div class="cap">Citat kartica</div>
+                <div class="shot" role="listitem" data-src="/assets/img/screenshot_04.png" data-src-webp="/assets/img/screenshot_04_lg.webp" data-cap="Odabir staza svjetla">
+                    <picture>
+                        <source srcset="/assets/img/screenshot_04_th.webp" type="image/webp">
+                        <img src="/assets/img/screenshot_04_th.jpg" alt="Kartica Svjetla" loading="lazy">
+                    </picture>
+                    <div class="cap">Kartica Svjetla</div>
                 </div>
-                <div class="shot" role="listitem" data-src="assets/img/screenshot_06.png" data-cap="Omiljeni citati">
-                    <img src="assets/img/screenshot_06.png" alt="Screenshot 6" loading="lazy">
-                    <div class="cap">Omiljeni</div>
+                <div class="shot" role="listitem" data-src="/assets/img/screenshot_05.png" data-src-webp="/assets/img/screenshot_05_lg.webp" data-cap="Svjetlo za tebe – citat kartica">
+                    <picture>
+                        <source srcset="/assets/img/screenshot_05_th.webp" type="image/webp">
+                        <img src="/assets/img/screenshot_05_th.jpg" alt="Omiljeni citati" loading="lazy">
+                    </picture>
+                    <div class="cap">Omiljeni citati</div>
                 </div>
-                <div class="shot" role="listitem" data-src="assets/img/screenshot_07.png" data-cap="Razmatranja – editor">
-                    <img src="assets/img/screenshot_07.png" alt="Screenshot 7" loading="lazy">
+                <div class="shot" role="listitem" data-src="/assets/img/screenshot_06.png" data-src-webp="/assets/img/screenshot_06_lg.webp" data-cap="Omiljeni citati">
+                    <picture>
+                        <source srcset="/assets/img/screenshot_06_th.webp" type="image/webp">
+                        <img src="/assets/img/screenshot_06_th.jpg" alt="Razmatranja" loading="lazy">
+                    </picture>
                     <div class="cap">Razmatranja</div>
                 </div>
-                <div class="shot" role="listitem" data-src="assets/img/screenshot_08.png" data-cap="Unos teksta govorom">
-                    <img src="assets/img/screenshot_08.png" alt="Screenshot 8" loading="lazy">
+                <div class="shot" role="listitem" data-src="/assets/img/screenshot_07.png" data-src-webp="/assets/img/screenshot_07_lg.webp" data-cap="Razmatranja – editor">
+                    <picture>
+                        <source srcset="/assets/img/screenshot_07_th.webp" type="image/webp">
+                        <img src="/assets/img/screenshot_07_th.jpg" alt="Govorni unos" loading="lazy">
+                    </picture>
                     <div class="cap">Govorni unos</div>
+                </div>
+                <div class="shot" role="listitem" data-src="/assets/img/screenshot_08.png" data-src-webp="/assets/img/screenshot_08_lg.webp" data-cap="Unos teksta govorom">
+                    <picture>
+                        <source srcset="/assets/img/screenshot_08_th.webp" type="image/webp">
+                        <img src="/assets/img/screenshot_08_th.jpg" alt="Povijest citata" loading="lazy">
+                    </picture>
+                    <div class="cap">Povijest citata</div>
                 </div>
             </div>
         </div>
@@ -106,31 +133,31 @@ description: Moj Prozor Svjetla (MPS) – kršćanska, katolička mobilna aplika
                 diraju u srce i dušu. Ti citati su se sastojali od naziva knjige, poglavlja i retka iz Biblije. Predstavljali su
                 jedno veliko bogatstvo i otkriće u svijetu ljubitelja Božje riječi. Ljudi bi ispisivali te citate na male papiriće u
                 raznim bojama koji bi obično bili plastificirani da bi bili dugotrajni.
-            </p>
-            
+            </p><br />
+
             <p>
                 Naša baka je tada dobila na poklon te citate i mi kad bi se okupili u obitelji nasumice bi izvlačiti Božju Riječ
                 preko tih citata koji su bili jedno pravo otkriće i uvijek iznova oduševljavali.
-            </p>
-            
+            </p><br />
+
             <p>
                 Citati bi služili kao prijeka pomoć u različitim životnim problemima, kušnjama, nedoumicama, kad bi trebali savjet
                 od Boga, pa bi izvlačenjem citata htjeli čuti ono: „Bože što nam ti sad poručuješ? Kuda nas usmjeravaš, vodiš?...“
-            </p>
-            
+            </p><br />
+
             <p>
                 Prošlo je više od 20 godina i ti isti citati su aktualni u našim obiteljima i širim i užim vjerskim zajednicama.
-            </p>
-            
+            </p><br />
+
             <p>
                 Pošto nismo uvijek u prilici imati sa sobom Bibliju i dostupnu Božju Riječ u džepu, autor je zaželio dati svoj mali
                 doprinos Crkvi i svijetu da se ova ista ideja začeta na papirićima prenese i u oblik koji današnji moderni čovjek
                 svakodnevno koristi i ima dostupnu u svom džepu - a to je u vidu mobilne aplikacije.
-            </p>
-            
+            </p><br />
+
             <p>
                 Nadamo se da će čitanje Božje Riječi i na ovaj način biti plodonosan i koristan u mnogim trenutcima Vaših života :)
-            </p>
+            </p><br />
 
             <div class="story">
                 <div class="panel">
@@ -148,7 +175,7 @@ description: Moj Prozor Svjetla (MPS) – kršćanska, katolička mobilna aplika
                         <li>da Božja Riječ bude dostupna „u džepu”</li>
                         <li>da se citati lako spremaju u omiljene za kasnije čitanje i razmatranje</li>
                         <li>da razmatranja kroz bilješke budu jednostavna i uz mmogućnost glasovnog diktiranja</li>
-                        <li>da MPS uistinu bude: <b>„Riječ koja dolazi kad ti je najpotrebnija.“</b></li>
+                        <li>da MPS uistinu bude <b>„Riječ koja dolazi kad ti je najpotrebnija.“</b></li>
                     </ul>
                 </div>
             </div>

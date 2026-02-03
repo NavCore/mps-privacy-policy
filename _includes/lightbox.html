@@ -15,6 +15,16 @@
 
 <script>
   (function(){
+    const supportsWebp = (() => {
+      try {
+        const c = document.createElement('canvas');
+        if (!c.getContext) return false;
+        return c.toDataURL('image/webp').indexOf('data:image/webp') === 0;
+      } catch(e){
+        return false;
+      }
+    })();
+
     const shots = Array.from(document.querySelectorAll('.shot'));
     const lb = document.getElementById('lb');
     const lbImg = document.getElementById('lbImg');
@@ -28,7 +38,7 @@
     function openAt(i){
       idx = Math.max(0, Math.min(shots.length - 1, i));
       const el = shots[idx];
-      lbImg.src = el.dataset.src;
+      lbImg.src = (supportsWebp && el.dataset.srcWebp) ? el.dataset.srcWebp : el.dataset.src;
       lbImg.alt = el.dataset.cap || ('Screenshot ' + (idx+1));
       lbCap.textContent = el.dataset.cap || ('Screenshot ' + (idx+1));
       lb.classList.add('open');
