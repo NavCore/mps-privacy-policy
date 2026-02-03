@@ -78,7 +78,7 @@ Web je statički i hostan putem **GitHub Pages**.
 
 ## 👤 Autor
 
-**Josip Brekalo**  
+**Josip Brekalo zajedno s obitelji**  
 📧 Kontakt: **mojprozorsvjetla@gmail.com**
 
 ---
